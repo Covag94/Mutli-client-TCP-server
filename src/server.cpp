@@ -1,5 +1,5 @@
 #include "../include/server.hpp"
-#include "../src/echo_handler.cpp"
+#include "../include/echo_handler.hpp"
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <unistd.h>

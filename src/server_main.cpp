@@ -1,5 +1,5 @@
 #include "../include/server.hpp"
-#include "echo_handler.cpp"
+#include "../include/echo_handler.hpp"
 
 int main() {
     EchoHandler handler;
