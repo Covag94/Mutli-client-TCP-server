@@ -7,10 +7,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 include_directories(include)
 
 # server executable
-add_executable(tcp_echo_server
+add_executable(server
     src/server_main.cpp
-    src/server.cpp)
+    src/server.cpp
+    src/echo_handler.cpp)
 
 # client executable
-add_executable(tcp_echo_client
+add_executable(client
     src/client_main.cpp)

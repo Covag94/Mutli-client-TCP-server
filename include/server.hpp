@@ -1,18 +1,21 @@
 #ifndef SERVER_HPP
 #define SERVER_HPP
 
-class Server {
-    public:
-        Server(int port);
-        void start();
+class ClientHandler;
 
-    private:
-        void setUpSocket();
-        void handleClient(int clientSocket);
+class Server
+{
+public:
+    Server(int port, ClientHandler *handler);
+    void start();
 
-    private:
-        int m_port;
-        int m_socketDescr; 
+private:
+    void setUpSocket();
+
+private:
+    int m_port;
+    int m_socketDescr;
+    ClientHandler *m_handler;
 };
 
 #endif
