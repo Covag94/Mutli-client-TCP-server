@@ -1,5 +1,4 @@
-#ifndef SERVER_HPP
-#define SERVER_HPP
+#pragma once
 
 class ClientHandler;
 
@@ -17,5 +16,3 @@ private:
     int m_socketDescr;
     ClientHandler *m_handler;
 };
-
-#endif
