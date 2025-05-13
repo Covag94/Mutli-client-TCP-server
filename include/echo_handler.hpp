@@ -5,5 +5,5 @@
 class EchoHandler : public ClientHandler
 {
 public:
-    void handle(int clientSocket) override;
+    void handle(Socket clientSocket) override;
 };

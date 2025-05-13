@@ -1,4 +1,5 @@
 #pragma once
+#include "socket.hpp"
 
 class ClientHandler;
 
@@ -13,6 +14,6 @@ private:
 
 private:
     int m_port;
-    int m_socketDescr;
+    Socket m_socket;
     ClientHandler *m_handler;
 };

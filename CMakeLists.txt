@@ -10,6 +10,7 @@ include_directories(include)
 add_executable(server
     src/server_main.cpp
     src/server.cpp
+    src/socket.cpp
     src/echo_handler.cpp)
 
 # client executable
