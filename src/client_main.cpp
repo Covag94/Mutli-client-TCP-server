@@ -1,3 +1,4 @@
+#include "../include/socket.hpp"
 #include <iostream>
 #include <cstring>
 #include <unistd.h>
@@ -5,8 +6,8 @@
 
 int main()
 {
-    int sock = socket(AF_INET, SOCK_STREAM, 0);
-    if (sock < 0)
+    Socket clientSocket = Socket(socket(AF_INET, SOCK_STREAM, 0));
+    if (clientSocket.get() < 0)
     {
         perror("Socket creation failed");
         return 1;
@@ -24,7 +25,7 @@ int main()
     }
 
     // Socket needs to be connected to specified address
-    if (connect(sock, (sockaddr *)&serverAddr, sizeof(serverAddr)) < 0)
+    if (connect(clientSocket.get(), (sockaddr *)&serverAddr, sizeof(serverAddr)) < 0)
     {
         perror("Connection failed");
         return 1;
@@ -35,7 +36,7 @@ int main()
     char buffer[1024];
     while (std::cin.getline(buffer, sizeof(buffer)))
     {
-        ssize_t sent = send(sock, buffer, strlen(buffer), 0);
+        ssize_t sent = send(clientSocket.get(), buffer, strlen(buffer), 0);
         if (sent < 0)
         {
             perror("Send failed");
@@ -43,7 +44,7 @@ int main()
         }
 
         char reply[1024];
-        ssize_t received = recv(sock, reply, sizeof(reply) - 1, 0);
+        ssize_t received = recv(clientSocket.get(), reply, sizeof(reply) - 1, 0);
         if (received <= 0)
         {
             std::cout << "Server closed connection.\n";
@@ -53,6 +54,4 @@ int main()
         reply[received] = '\0';
         std::cout << "Echo from server : " << reply << std::endl;
     }
-
-    close(sock);
 }
